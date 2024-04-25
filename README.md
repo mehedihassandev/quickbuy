@@ -42,8 +42,8 @@ Once the development server starts, open your browser and navigate to `http://lo
 This template aims to provide a minimal setup to kickstart your React development with Vite.
 Feel free to customize the ESLint rules in the .eslintrc.js file according to your preferences and project requirements.
 
-# for making branch & commit
+## For making branch & commit
 
 - QB-issue
-- for example : QB-101
+- for example: QB-101
 - for comment: QB-101: Your commit message
