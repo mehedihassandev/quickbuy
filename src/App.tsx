@@ -1,6 +1,11 @@
 import { FC } from "react";
-import Home from "./app/components/pages/Home";
+import { BrowserRouter } from "react-router-dom";
+import { RouterConfig } from "./app/components/navigation/RouterConfig";
 const App: FC = () => {
-  return <Home />;
+  return (
+    <BrowserRouter>
+      <RouterConfig />
+    </BrowserRouter>
+  );
 };
 export default App;

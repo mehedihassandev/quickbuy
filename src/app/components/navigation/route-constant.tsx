@@ -1,7 +1,9 @@
 export const ROUTES = {
-  HOME: "home",
+  HOME: "/",
+  ABOUT: "about",
 };
 
 export const LINKS = {
-  HOME: "home",
+  HOME: "/",
+  ABOUT: "about",
 };
