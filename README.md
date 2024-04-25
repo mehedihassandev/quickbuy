@@ -6,6 +6,9 @@ This template provides a straightforward setup for building React applications w
 
 Before you proceed, make sure you have Node.js and npm (or yarn) installed on your machine.
 
+1. yarn --version
+2. npm --version
+
 ## Steps to Clone and Use
 
 ## 1. Clone the Repository:
