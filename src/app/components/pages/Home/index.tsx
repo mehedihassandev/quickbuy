@@ -1,8 +1,8 @@
+import { Products } from "../Products/index";
 export const Home = () => {
   return (
     <>
-      <h1>QucikBuy Home Page</h1>
+      <Products />
     </>
   );
 };
-
