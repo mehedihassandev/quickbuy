@@ -1,5 +1,5 @@
 export const Layout = () => {
-  return <div>Layout</div>;
+  return <>Layout</>;
 };
 
 export default Layout;
