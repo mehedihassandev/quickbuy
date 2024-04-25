@@ -1,5 +1,5 @@
 import { Box, SxProps } from "@mui/material";
-import React, { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export interface ContentWrapperProps {
   children: ReactNode;
