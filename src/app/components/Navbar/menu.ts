@@ -1,4 +1,4 @@
-import { ROUTES } from "../navigation/route-constant";
+import { ROUTES } from "../../navigation/route-constant";
 
 export const menus = [
   {
@@ -23,11 +23,11 @@ export const menus = [
   },
   {
     title: "Products",
-    path: "/products",
+    path: ROUTES.PRODUCTS,
   },
   {
     title: "Contact",
-    path: "/contact",
+    path: ROUTES.CONTACTS,
   },
 ];
 
