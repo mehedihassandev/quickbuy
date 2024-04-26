@@ -16,7 +16,7 @@ export const Footer = () => {
         pb: "1rem",
       }}
     >
-      <Box sx={{ ml: "20rem", mr: "10rem", maxWidth: "lg" }}>
+      <Box sx={{ ml: "20rem", mr: "10rem", maxWidth: "xl" }}>
         <Grid container justifyContent="space-between">
           <Grid item>
             <Typography
