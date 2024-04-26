@@ -172,8 +172,9 @@ export const Navbar = () => {
             sx={{
               flexGrow: 2,
               display: { xs: "none", md: "flex" },
-              justifyContent: "center",
+              justifyContent: "right",
               alignItems: "center",
+              pr: 5,
             }}
           >
             {menus.map((menu) =>
