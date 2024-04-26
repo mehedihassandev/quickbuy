@@ -17,8 +17,9 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { MouseEvent, useState } from "react";
-import { menuDropdown, menus, settings } from "./menu";
+import { Fragment, MouseEvent, useState } from "react";
+import { Link } from "react-router-dom";
+import { menus, settings } from "./menu";
 
 export const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -76,7 +77,6 @@ export const Navbar = () => {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -86,14 +86,7 @@ export const Navbar = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleDrawerOpen}
-              color="inherit"
-            >
+            <IconButton size="large" onClick={handleDrawerOpen} color="inherit">
               <MenuIcon />
             </IconButton>
             <Drawer
@@ -108,38 +101,51 @@ export const Navbar = () => {
             >
               <List>
                 {menus.map((menu) => (
-                  <div key={menu}>
-                    <ListItem
-                      button
-                      onClick={
-                        menu === "Shop" ? handleClickShop : handleDrawerClose
-                      }
+                  <Fragment key={menu.title}>
+                    <Link
+                      to={menu.path}
+                      key={menu.title}
+                      style={{ textDecoration: "none", color: "black" }}
                     >
-                      <ListItemText primary={menu} />
-                      {menu === "Shop" ? (
-                        openShop ? (
-                          <ExpandLess />
-                        ) : (
-                          <ExpandMore />
-                        )
-                      ) : null}
-                    </ListItem>
-                    {menu === "Shop" && (
+                      <ListItem
+                        button
+                        onClick={
+                          menu.title === "Shop"
+                            ? handleClickShop
+                            : handleDrawerClose
+                        }
+                      >
+                        <ListItemText primary={menu.title} />
+                        {menu.title === "Shop" ? (
+                          openShop ? (
+                            <ExpandLess />
+                          ) : (
+                            <ExpandMore />
+                          )
+                        ) : null}
+                      </ListItem>
+                    </Link>
+                    {menu.title === "Shop" && menu.submenu && (
                       <Collapse in={openShop} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                          {menuDropdown.map((item) => (
-                            <ListItem
-                              button
-                              key={item}
-                              onClick={handleDrawerClose}
+                          {menu.submenu.map((item) => (
+                            <Link
+                              to={item.path}
+                              key={item.title}
+                              style={{
+                                textDecoration: "none",
+                                color: "black",
+                              }}
                             >
-                              <ListItemText primary={item} />
-                            </ListItem>
+                              <ListItem button onClick={handleDrawerClose}>
+                                <ListItemText primary={item.title} />
+                              </ListItem>
+                            </Link>
                           ))}
                         </List>
                       </Collapse>
                     )}
-                  </div>
+                  </Fragment>
                 ))}
               </List>
             </Drawer>
@@ -154,7 +160,6 @@ export const Navbar = () => {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -171,24 +176,46 @@ export const Navbar = () => {
               alignItems: "center",
             }}
           >
-            {menus.map((menu) => (
-              <MenuItem
-                key={menu}
-                onClick={handleOpenMenu}
-                sx={{
-                  my: 2,
-                  color: "black",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  fontWeight: 500,
-                  fontSize: "1rem",
-                }}
-              >
-                {menu}
-                {menu === "Shop" && <ExpandMore />}
-              </MenuItem>
-            ))}
+            {menus.map((menu) =>
+              menu.title === "Shop" ? (
+                <MenuItem
+                  key={menu.title}
+                  onClick={handleOpenMenu}
+                  sx={{
+                    my: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                >
+                  {menu.title}
+                  <ExpandMore />
+                </MenuItem>
+              ) : (
+                <Link
+                  to={menu.path}
+                  key={menu.title}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontWeight: 500,
+                    fontSize: "1rem",
+                  }}
+                >
+                  <MenuItem
+                    onClick={handleOpenMenu}
+                    sx={{
+                      my: 2,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                    }}
+                  >
+                    {menu.title}
+                  </MenuItem>
+                </Link>
+              )
+            )}
 
             <Menu
               id="dropdown-menu"
@@ -197,11 +224,25 @@ export const Navbar = () => {
               open={Boolean(anchorEl)}
               onClose={handleCloseMenu}
             >
-              {menuDropdown.map((item) => (
-                <MenuItem key={item} onClick={handleCloseMenu}>
-                  {item}
-                </MenuItem>
-              ))}
+              {menus.map((menu) => {
+                if (menu.title === "Shop" && menu.submenu) {
+                  return menu.submenu.map((submenu) => (
+                    <Link
+                      to={submenu.path}
+                      key={submenu.title}
+                      style={{
+                        textDecoration: "none",
+                        color: "black",
+                      }}
+                    >
+                      <MenuItem onClick={handleCloseMenu}>
+                        {submenu.title}
+                      </MenuItem>
+                    </Link>
+                  ));
+                }
+                return null;
+              })}
             </Menu>
           </Box>
 
@@ -235,9 +276,23 @@ export const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+                <Link
+                  to={setting.path}
+                  key={setting.title}
+                  onClick={handleCloseUserMenu}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    fontWeight: 500,
+                    fontSize: "1rem",
+                    padding: "10px 20px",
+                  }}
+                >
+                  {setting.title}
+                </Link>
               ))}
             </Menu>
           </Box>
