@@ -1,5 +1,5 @@
-import { Adb, ExpandLess, ExpandMore } from "@mui/icons-material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Adb, ExpandLess, ExpandMore } from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Avatar,
@@ -15,11 +15,11 @@ import {
   MenuItem,
   Toolbar,
   Tooltip,
-  Typography,
-} from "@mui/material";
-import { Fragment, MouseEvent, useState } from "react";
-import { Link } from "react-router-dom";
-import { menus, settings } from "./menu";
+  Typography
+} from '@mui/material';
+import { Fragment, MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { menus, settings } from './menu';
 
 export const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -48,7 +48,7 @@ export const Navbar = () => {
   };
 
   const handleOpenMenu = (event: MouseEvent<HTMLElement>) => {
-    if (event.currentTarget.textContent === "Shop") {
+    if (event.currentTarget.textContent === 'Shop') {
       setAnchorEl(event.currentTarget);
     }
   };
@@ -62,30 +62,30 @@ export const Navbar = () => {
       <AppBar
         position="static"
         sx={{
-          bgcolor: "white",
-          color: "black",
+          bgcolor: 'white',
+          color: 'black',
           px: 2,
-          boxShadow: "none",
+          boxShadow: 'none'
         }}
       >
         <Toolbar disableGutters>
           {/* QB-7: Responsive menu */}
-          <Adb sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Adb sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: 'none', md: 'flex' },
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
+              letterSpacing: '.3rem',
+              color: 'inherit'
             }}
           >
             LOGO
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton size="large" onClick={handleDrawerOpen} color="inherit">
               <MenuIcon />
             </IconButton>
@@ -94,9 +94,9 @@ export const Navbar = () => {
               open={drawerOpen}
               onClose={handleDrawerClose}
               sx={{
-                "& .MuiDrawer-paper": {
-                  width: "35%",
-                },
+                '& .MuiDrawer-paper': {
+                  width: '35%'
+                }
               }}
             >
               <List>
@@ -105,18 +105,18 @@ export const Navbar = () => {
                     <Link
                       to={menu.path}
                       key={menu.title}
-                      style={{ textDecoration: "none", color: "black" }}
+                      style={{ textDecoration: 'none', color: 'black' }}
                     >
                       <ListItem
                         button
                         onClick={
-                          menu.title === "Shop"
+                          menu.title === 'Shop'
                             ? handleClickShop
                             : handleDrawerClose
                         }
                       >
                         <ListItemText primary={menu.title} />
-                        {menu.title === "Shop" ? (
+                        {menu.title === 'Shop' ? (
                           openShop ? (
                             <ExpandLess />
                           ) : (
@@ -125,7 +125,7 @@ export const Navbar = () => {
                         ) : null}
                       </ListItem>
                     </Link>
-                    {menu.title === "Shop" && menu.submenu && (
+                    {menu.title === 'Shop' && menu.submenu && (
                       <Collapse in={openShop} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                           {menu.submenu.map((item) => (
@@ -133,8 +133,8 @@ export const Navbar = () => {
                               to={item.path}
                               key={item.title}
                               style={{
-                                textDecoration: "none",
-                                color: "black",
+                                textDecoration: 'none',
+                                color: 'black'
                               }}
                             >
                               <ListItem button onClick={handleDrawerClose}>
@@ -152,17 +152,17 @@ export const Navbar = () => {
           </Box>
 
           {/* QB-7: Full width menu */}
-          <Adb sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Adb sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
+              letterSpacing: '.3rem',
+              color: 'inherit'
             }}
           >
             LOGO
@@ -171,22 +171,22 @@ export const Navbar = () => {
           <Box
             sx={{
               flexGrow: 2,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "right",
-              alignItems: "center",
-              pr: 5,
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'right',
+              alignItems: 'center',
+              pr: 5
             }}
           >
             {menus.map((menu) =>
-              menu.title === "Shop" ? (
+              menu.title === 'Shop' ? (
                 <MenuItem
                   key={menu.title}
                   onClick={handleOpenMenu}
                   sx={{
                     my: 2,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1
                   }}
                 >
                   {menu.title}
@@ -197,19 +197,19 @@ export const Navbar = () => {
                   to={menu.path}
                   key={menu.title}
                   style={{
-                    textDecoration: "none",
-                    color: "black",
+                    textDecoration: 'none',
+                    color: 'black',
                     fontWeight: 500,
-                    fontSize: "1rem",
+                    fontSize: '1rem'
                   }}
                 >
                   <MenuItem
                     onClick={handleOpenMenu}
                     sx={{
                       my: 2,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1
                     }}
                   >
                     {menu.title}
@@ -226,14 +226,14 @@ export const Navbar = () => {
               onClose={handleCloseMenu}
             >
               {menus.map((menu) => {
-                if (menu.title === "Shop" && menu.submenu) {
+                if (menu.title === 'Shop' && menu.submenu) {
                   return menu.submenu.map((submenu) => (
                     <Link
                       to={submenu.path}
                       key={submenu.title}
                       style={{
-                        textDecoration: "none",
-                        color: "black",
+                        textDecoration: 'none',
+                        color: 'black'
                       }}
                     >
                       <MenuItem onClick={handleCloseMenu}>
@@ -253,7 +253,7 @@ export const Navbar = () => {
                 <Avatar
                   alt="Quick Buy"
                   sx={{
-                    bgcolor: "orange",
+                    bgcolor: 'orange'
                   }}
                 >
                   Q
@@ -261,17 +261,17 @@ export const Navbar = () => {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right'
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right'
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
@@ -282,14 +282,14 @@ export const Navbar = () => {
                   key={setting.title}
                   onClick={handleCloseUserMenu}
                   style={{
-                    textDecoration: "none",
-                    color: "black",
-                    display: "flex",
-                    alignItems: "center",
+                    textDecoration: 'none',
+                    color: 'black',
+                    display: 'flex',
+                    alignItems: 'center',
                     gap: 1,
                     fontWeight: 500,
-                    fontSize: "1rem",
-                    padding: "10px 20px",
+                    fontSize: '1rem',
+                    padding: '10px 20px'
                   }}
                 >
                   {setting.title}
