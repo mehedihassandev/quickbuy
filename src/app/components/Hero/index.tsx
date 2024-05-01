@@ -18,7 +18,7 @@ export const Hero: FC = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          height: "80vh",
+          height: "100vh",
           bgcolor: "primary.main",
           color: "common.white",
           textAlign: "center",
