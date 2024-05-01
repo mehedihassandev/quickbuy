@@ -17,14 +17,14 @@ export const Products = () => {
         Our bestsellers
       </Typography>
       <Container
-        style={{ display: "flex", flexDirection: "row", gap: 15 }}
+        sx={{ display: "flex", flexDirection: "row", gap: 15 }}
         maxWidth="xl"
       >
         {productDummyData.map((item) => (
           <Card
             sx={{
               width: 600,
-              backgroundColor: "transparent",
+              bgcolor: "transparent",
               boxShadow: "none",
             }}
           >
@@ -44,7 +44,7 @@ export const Products = () => {
                 >
                   {item.name}
                 </Typography>
-                <Stack direction={"row"} spacing={2} justifyContent={"center"}>
+                <Stack direction="row" spacing={2} justifyContent="center">
                   <Typography
                     variant="h5"
                     color="#c6c4c4"
